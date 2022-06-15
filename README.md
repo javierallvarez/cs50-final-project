@@ -23,21 +23,18 @@ I needed several attempts, however I finally got connected the backend and the f
 
 ### How it runs:
 **General view:**
-In this page you can see all news, filter between topic, searching by keywords and save to your Readlist. 
-[8news_screenshot01](https://user-images.githubusercontent.com/83608710/173812688-ffd26756-0d18-4849-bff1-6c0b5ece390f.png)
+In this page you can see all news, filter between topic, searching by keywords and save to your Readlist. ![8news_screenshot01](https://user-images.githubusercontent.com/83608710/173812688-ffd26756-0d18-4849-bff1-6c0b5ece390f.png)
 
 
 **News page:**
-This page shows the complete content of each news and all comments.
-https://dl.dropboxusercontent.com/s/rdy637bs8n7hscz/8news_screenshot02.png?dl=0
+This page shows the complete content of each news and all comments.![8news_screenshot02](https://user-images.githubusercontent.com/83608710/173813272-d2d6bcd4-05f8-463c-83b6-1795a37e69ba.png)
+
 
 **Comments:**
-If are a logged user, you can post comments and then edit or delete them.
-https://dl.dropboxusercontent.com/s/p5xcbzw4kevfkhm/8news_screenshot03.png?dl=0
+If you are a logged user, you can post comments and then edit or delete them.![8news_screenshot03](https://user-images.githubusercontent.com/83608710/173813482-42feb5ea-3f3c-4429-9577-c206c0298951.png)
 
 **Readlist:**
-This page stores your favorite articles, you can access to them whenever you want and delete it by clicking on the button.
-https://dl.dropboxusercontent.com/s/1fxug95ayy2rgyq/8news_screenshot04.png?dl=0
+This page stores your favorite articles, you can access to them whenever you want and delete it by clicking on the button.![8news_screenshot04](https://user-images.githubusercontent.com/83608710/173813519-4baec4b9-46a0-4138-8807-625b2f287177.png)
 
 
 ### Thanks for your time!
