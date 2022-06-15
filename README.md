@@ -1,5 +1,6 @@
 # 8NEWS
 ## CS50 Web Programming with Python and JavaScript - Final project
+## ⚡[Video](https://www.youtube.com/watch?v=3VnyH0xtQ9A&t=93s) 
 
 ### Technologies:
 - Python (Django framework)
