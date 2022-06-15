@@ -24,7 +24,8 @@ I needed several attempts, however I finally got connected the backend and the f
 ### How it runs:
 **General view:**
 In this page you can see all news, filter between topic, searching by keywords and save to your Readlist. 
-https://dl.dropboxusercontent.com/s/4453qyhujk8kghh/8news_screenshot01.png?dl=0
+[8news_screenshot01](https://user-images.githubusercontent.com/83608710/173812688-ffd26756-0d18-4849-bff1-6c0b5ece390f.png)
+
 
 **News page:**
 This page shows the complete content of each news and all comments.
