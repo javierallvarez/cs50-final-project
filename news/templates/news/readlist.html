@@ -1,0 +1,58 @@
+{% extends "news/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <header class="header">
+        <div class="head_elements">
+            <figure class="resetter">
+                <a class="logo" href="{% url 'index' %}">
+                    <i class="fa-solid fa-arrow-left-long"></i>  
+                </a>
+            </figure> 
+            <div class="header-end">
+                <div title="Logged as @{{ profile.user.username }}" class="little-avatar">
+                    <img src="{{ profile.avatar }}" alt=""> 
+                </div> 
+            </div>            
+        </div>
+        <!-- Scroll bars:     -->
+        <div id="bar1"></div>      
+        <div id="bar"></div>      
+    </header>
+
+    <div class="welcome-readlist"> 
+        <h3 class="resetter">My Readlist</h3> 
+        <p class="resetter gray headerRef">Your selected news</p> 
+    </div>
+
+    <div class="card-container-readlist" >
+        {% for item in readlist %}
+            <div class="card news-card rdlCard" id="readlist-card-{{item.id}}" data-id="item.id">
+                <div>
+                    <a href="{% url 'single_news' item.id %}" >
+                        <div class="img_cont">
+                            <img src="{{item.image}}" 
+                            class="preload"
+                            alt="{{item.title}}"/>
+                        </div>
+                    </a>
+                    <div class="card_footer">
+                        <h2 class="font-2">{{item.title}}</h2>          
+                        <p class="gray">{{item.description}}</p>
+                        <p class="topic-sid">
+                            <i class="fa-solid fa-newspaper turq"></i> {{ item.topic }}
+                        </p>
+                    </div>
+                </div>
+                <div id="alert_message"></div> 
+                <button class="on-list to-readlist orange" data-id="{{item.id}}" id="delFromReadlist-{{item.id}}"><i class="fa-solid fa-book-open-reader turq"></i> Add to my readlist</button>   
+            </div>
+            {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'news/readlist.js' %}"></script>
+    <script src="{% static 'news/pageEffects.js' %}"></script>
+{% endblock %}

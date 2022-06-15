@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}8News: Discover the truth{% endblock %}</title>
+        <link href="{% static 'news/styles.css' %}" rel="stylesheet">
+        <link href="{% static 'news/reset.css' %}" rel="stylesheet">
+        <link href="{% static 'news/forms.css' %}" rel="stylesheet">
+        <link href="{% static 'news/menu.css' %}" rel="stylesheet">
+        <link href="{% static 'news/responsive.css' %}" rel="stylesheet">
+        <link  rel="picture"   href="../../static/Images" type="image/png" />
+        <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+        <script src="https://kit.fontawesome.com/fddc2a7317.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        
+
+    
+        <div class="container" id="container">
+            {% block body %}
+            {% endblock %}
+
+            {% block script %}
+                <script src="{% static 'news/index.js' %}"></script>
+                <script src="{% static 'news/pageEffects.js' %}"></script>
+            {% endblock %}
+        </div>
+
+        <footer>
+            <div class="footer">
+                <figure class="font-3 footer-first">
+                    <a class="logo-footer" href="{% url 'index' %}">
+                        <img src="../../static/news/Images/8news_logo_invert.svg" alt="logo">  
+                    </a>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Numquam blanditiis odit ipsa incidunt tenetur veniam.</p>
+                    <p>© 8News</p>
+                    <div class="social">
+                        <a href=""><i class="fa-brands fa-twitter-square turq"></i></a>
+                        <a href=""><i class="fa-brands fa-instagram-square turq"></i></a>
+                        <a href=""><i class="fa-brands fa-facebook-square turq"></i></a>
+                        <a href=""><i class="fa-brands fa-google-plus-square turq"></i></a>
+                        <a href=""><i class="fa-solid fa-square-envelope turq"></i></a>
+                    </div>
+                </figure> 
+                <div class="footer-sec">
+                    <ul class="font-3">
+                        <li class="white">        
+                            <a class="white" href="">News</a>
+                        </li>
+                        <li>        
+                            <a class="white" href="">Data for research</a>
+                        </li>
+                        <li>        
+                            <a class="white" href="">Cookie policy</a>
+                        </li>
+                        <li>        
+                            <a class="white" href="">About 8News</a>
+                        </li>
+                        <li>        
+                            <a class="white" href="">Contact</a>
+                        </li>
+                        <li>        
+                            <a class="white" href="">Careers</a>
+                        </li>
+                        <li>        
+                            <a class="white" href="">Terms and conditions</a>
+                        </li>    
+                    </ul> 
+                </div>    
+            </div>
+            
+        </footer>
+    </body>
+</html>

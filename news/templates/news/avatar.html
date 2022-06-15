@@ -1,0 +1,36 @@
+{% extends "news/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    <div class="welcome-login"> 
+        <h3 class="resetter">Choose your profile picture</h3> 
+        <p class="resetter">Remember to smile!</p> 
+    </div>
+    <div class="choose-avatar">
+        
+        <form action="{% url 'avatar' %}" method="post" id="avatar-form" >
+            {% csrf_token %}
+            <div class="user-doll">
+                <i class="fa-solid fa-user-doctor"></i>
+                <i class="fa-solid fa-user-tie"></i>
+                <i class="fa-solid fa-user-astronaut "></i>
+            </div>    
+            <div class="input-div">
+                <label for="avatar" class="avatarUrl">
+                    <p>Profile picture:</p>
+                </label> {{ avatarForm.avatar }}
+                <label for="avatar" class="avatarUrl">
+                    <p>Your bio:</p>
+                    <p>{{ avatarForm.about_you }}</p>
+                </label>
+            </div>
+            <input class="button" type="submit" value="Save">
+        </form>  
+    </div>      
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/index.js' %}"></script>
+{% endblock %}

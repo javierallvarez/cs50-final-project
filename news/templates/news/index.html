@@ -1,0 +1,172 @@
+{% extends "news/layout.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block body %}
+<header class="header">
+    <div class="head_elements">
+        <figure class="resetter">
+            <a class="logo" href="{% url 'index' %}">
+                <img src="../../static/news/Images/8news_logo.svg" alt="logo">  
+            </a>
+        </figure>
+        <form action="" class="searching">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" class="input search-bar" placeholder="e.g. Apple..." id="search">   
+        </form>  
+        
+        {% if user.is_authenticated %}
+            <div class="header-end">
+                <div class="bur-menu">
+                    <a href="#menu" id="toggle"><span></span></a>
+                    <div id="menu">
+                        <ul>
+                            <li>        
+                                <a href="{% url 'write_news' %}">
+                                    <button class="button">write news
+                                    </button>
+                                </a>
+                            </li>
+                            <li>        
+                                <a href="{% url 'load_readlist' %}">
+                                    <button class="button">my readlist
+                                    </button>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'logout' %}">
+                                    <button class="button">logout
+                                    </button>
+                                </a>
+                            </li>
+                        </ul>        
+                    </div>
+                </div>
+                <div title="Logged as @{{ profile.user.username }}" class="little-avatar">
+                    <img src="{{ profile.avatar }}" alt=""> 
+                </div> 
+            </div>    
+        {% else %}    
+            <a href="{% url 'login' %}">
+                <button class="button">login
+                </button>
+            </a>
+        {% endif %}     
+            <!-- <a href="#menu" id="toggle" class="menu">Menu <i class="fa-solid fa-menorah"></i></a> -->
+        <!-- </div>  -->
+    </div>
+    <!-- Scroll bars:     -->
+    <div id="bar1"></div>      
+    <div id="bar"></div>      
+</header>
+    <div class="welcome">
+        <figure>
+            <a class="big-logo" href="">
+                <img src="../../static/news/Images/8news_logo.svg" alt="logo">  
+            </a>
+        </figure>
+        <h3>Discover the truth.</h3>
+    </div>       
+    {% if user.is_authenticated %}
+        <div class="newsbar headerRef" id="newsbar">  
+            <p class="breaking-news">
+                {% for i in breakNews %}
+                    8reaking news: 
+                    <a href="{% url 'single_news' i.id %}">
+                        <span>{{ i.title}}</span>
+                    </a>
+                {% endfor %}
+            </p>
+        </div>
+    {% else %} 
+        <div class="go-register headerRef" href="{% url 'login'%}">
+            <div class="user-doll-little">
+                <i class="fa-solid fa-user-doctor"></i>
+                <i class="fa-solid fa-user-tie"></i>
+                <i class="fa-solid fa-user-astronaut "></i>
+            </div> 
+            <p>Create an account for a better experience!</p>
+            <div class="login-link">
+                <p>
+                    <a href="{% url 'login' %}">   
+                        Register 
+                    </a>
+                    or 
+                    <a href="{% url 'login' %}">   
+                        Login
+                    </a>
+                </p>
+            </div>    
+        </div>
+    {% endif %}   
+
+        <div class="nav-div">
+            <nav class="categs">
+            <ul>
+                <li>
+                    <button href="" id="general" class="button" title="Uncategorized News">
+                        <i class="fa-solid fa-newspaper turq"></i> All news
+                    </button>
+                </li>
+                <li>
+                    <button href="" id="music" class="button" title="Music News">
+                        <i class="fa-solid fa-compact-disc turq"></i> Music
+                    </button>
+                </li>
+                <li>
+                    <button href="" id="films" class="button" title="Films News">
+                        <i class="fa-solid fa-clapperboard turq"></i> Films
+                    </button>
+                </li>
+                <li>
+                    <button href="" id="astronomy" class="button" title="Astronomy News">
+                        <i class="fa-solid fa-shuttle-space turq"></i> Astronomy
+                    </button>
+                </li>
+                <li>
+                    <button href="" id="technology" class="button" title="Technology News">
+                        <i class="fa-solid fa-computer turq"></i> Tech
+                    </button>
+                </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div>
+            <div id="general-view" class="card-container" >
+                {% for item in news %}
+                    <div class="card news-card" data-id="{{ item.topic.topic }}">
+                        <div>
+                            <a href="{% url 'single_news' item.id %} " >
+                                <div class="img_cont">
+                                    <img src="{{item.image}}" 
+                                    class="preload"
+                                    alt="{{item.title}}"/>
+                                </div>
+                            </a>
+                            <div class="card_footer">
+                                <h2 class="font-2">{{item.title}}</h2>          
+                                <p class="gray">{{item.description}}</p>
+                                <p class="topic-sid">
+                                    <i class="fa-solid fa-newspaper turq"></i> {{ item.topic }}
+                                </p>
+                            </div>
+                        </div>
+                        {% if user.is_authenticated %}                
+                            {% if request.user in item.readlist.all %}
+                                <button class="to-readlist added orange" data-id="{{item.id}}" id="delFromRead-{{item.id}}"><i class="fa-solid fa-book-open-reader turq"></i> Add to my readlist</button>
+                            {% else %}
+                                <button class="to-readlist add" data-id="{{item.id}}" id="addToRead-{{item.id}}"><i class="fa-solid fa-book-open-reader turq"></i> Add to my readlist</button>
+                            {% endif %}
+                        {% endif %}
+                        
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'news/index.js' %}"></script>
+    <script src="{% static 'news/pageEffects.js' %}"></script>
+{% endblock %}

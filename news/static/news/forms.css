@@ -1,0 +1,152 @@
+.my-form {
+    background-color: var(--forms-4);
+    border-radius: 1rem;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    outline-color: #ffffff;
+    font-family: var(--font-1);
+}
+
+/* -------------REGISTER------------ */
+
+.welcome-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--forms-1);
+    height: 20vh;
+}
+
+.welcome-login h3{
+    font-size: 36px;
+    font-family: var(--font-2);
+}
+
+.welcome-login p{
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.input-div{
+    width: 80%;
+    text-align: center;
+}
+
+.input-div p, .name p{
+    margin: 1rem 0 5px 0;
+}
+
+.form-name {
+    display: flex;
+    width: 80%;
+    gap: 2rem;
+}
+  
+.name {
+    width: 45%;
+}
+
+/* -------------AVATAR-FORM------------ */
+
+.avatarUrl{
+    width: 90%;
+}
+
+#avatar-form{
+    height: 32rem;
+    width: 26rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--secondary);
+    border-radius: 20px;
+}
+
+.user-doll{
+    font-size: 70px;
+}
+
+.login-register, .choose-avatar{
+    height: fit-content;
+    padding: 5vh 0 15vh 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+#login, 
+#register, 
+#avatar-form{
+    height: 34rem;
+    width: 22rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--secondary);
+    border-radius: 20px;
+}
+
+/* -------------NEWS-FORM------------ */
+
+.write-page{
+    background: var(--secondary);
+    display: flex;
+    justify-content: center;
+}
+
+#news-form{
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 0;
+    margin-top: 2rem;
+}
+
+.news-input p{
+    font-weight: 100;
+    margin: 5px; 
+    font-size: 18px;
+}
+
+.news-input h3{
+    font-family: var(--font-2);
+    font-size: 28px;
+}
+
+.news-writing{
+    text-align: left;
+    font-weight: 700;
+}
+
+/* -------------COMMENTS------------ */
+
+#input-comment{
+    margin-top: 5rem;
+    width: 70vw;
+    align-self: center;
+    margin-bottom: 1rem;
+}
+
+.edit-box{
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.user-comment{
+    width: 100%;
+}
+
+.alert-msg{
+    text-align: center;
+    color: var(--secondary);
+    font-weight: 900;
+  }

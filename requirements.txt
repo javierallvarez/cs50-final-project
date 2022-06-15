@@ -1,0 +1,15 @@
+8News: 
+
+Technologies:
+- Python / Django.
+- Javascript.
+- HTML5.
+- CSS3.
+
+Only is necessary to install Django:
+
+In your terminal:
+pip install django
+
+More info about installation:
+https://docs.djangoproject.com/en/4.0/topics/install/

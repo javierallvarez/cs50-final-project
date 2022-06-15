@@ -1,0 +1,153 @@
+{% extends "news/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <header class="header">
+    <div class="head_elements">
+        <figure class="resetter">
+            <a class="logo" href="{% url 'index' %}">
+                <img src="../../static/news/Images/8news_logo.svg" alt="logo">  
+            </a>
+        </figure> 
+        
+        {% if user.is_authenticated %}
+            <div class="header-end">
+                <div class="bur-menu">
+                    <a href="#menu" id="toggle"><span></span></a>
+                    <div id="menu">
+                        <ul>
+                            <li>        
+                                <a href="{% url 'write_news' %}">
+                                    <button class="button">write news
+                                    </button>
+                                </a>
+                            </li>
+                            <li>        
+                                <a href="{% url 'load_readlist' %}">
+                                    <button class="button">my readlist
+                                    </button>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'logout' %}">
+                                    <button class="button">logout
+                                    </button>
+                                </a>
+                            </li>
+                        </ul>        
+                    </div>
+                </div>
+                <div title="Logged as @{{ profile.user.username }}" class="little-avatar">
+                    <img src="{{ profile.avatar }}" alt=""> 
+                </div> 
+            </div>    
+        {% else %}    
+            <a href="{% url 'login' %}">
+                <button class="button">login
+                </button>
+            </a>
+        {% endif %}     
+    </div>
+    <!-- Scroll bars:     -->
+    <div id="bar1"></div>      
+    <div id="bar"></div>      
+    </header>
+
+    <article class="single-news">
+        <p class="turq">{{ singleNews.topic }}</p>
+        <h1 class="font-2 headerRef">{{ singleNews.title }}</h1>
+        <h2 class="font-2">{{ singleNews.description }}</h2>
+        <div class="big-img-container">
+            <img src="{{ singleNews.image }}" class="preload" alt=""/> 
+        </div>    
+        <div title="{{ singleNews.user.first_name }} {{ singleNews.user.last_name }}" class="big-avatar">
+            <img src="{{ singleNews.profile.avatar }}" alt=""> 
+        </div> 
+        <h3>
+            <strong> {{ singleNews.profile.user.first_name|title }} {{ singleNews.profile.user.last_name|title }}</strong><br>
+            Journalist at 8News
+        </h3>
+        <div class="news-body">
+            <div class="paragraphs">
+                <p class="comment-content">{{ singleNews.content|linebreaksbr }}</p>
+                <br>
+                <p id="published" class="font-2">Published at: {{ singleNews.time }}</p>
+            </div>
+            <div class="some-news">
+                <h2 class="font-2">More news</h2>
+                {% for item in allNews %}
+                    <div class="minicard" data-id="{{ item.topic.topic }}">
+                        <a href="{% url 'single_news' item.id %} " >
+                            <div class="lil-img-cont">
+                                <img src="{{item.image}}" 
+                                class="preload"
+                                alt="{{item.title}}"/>
+                            </div>
+                        </a>
+                        <h4 class="font-2">{{item.title}}</h4> 
+                        <small class="topic-sid font-2">
+                            <i class="fa-solid fa-newspaper turq"></i> {{ item.topic }}
+                        </small>      
+                    </div>
+                {% endfor %}
+            </div>
+        </div>    
+        
+    </article> 
+
+    {% if user.is_authenticated %}
+        <div id="input-comment" 
+        data-newsId="{{singleNews.id}}"
+        data-user="{{request.user}}"
+        data-first_name="{{request.user.first_name}}"
+        data-last_name="{{request.user.last_name}}"
+        data-avatar="{{profile.avatar}}"
+        >
+            {{ commentForm.comment }}
+            <input id="submit" type="submit" class="button" value="Post" />   
+        </div>
+    {% endif %}    
+
+    <div id="alert_message"></div>
+
+    <div class="comments">
+        {% for i in allComments %}
+            <div class="comment-box" id="comment-box-{{i.id}}">
+                <div title="@{{ i.profile.avatar }}" class="little-avatar">
+                    <img src="{{ i.profile.avatar }}" alt=""> 
+                </div>
+                <div class="user-comment">
+                    <h4>{{ i.user.first_name}} {{ i.user.last_name}}</h4>
+                    <small class="turq">@{{ i.user}}</small>
+                    <div id="commentView-{{i.id}}" class="comment-body">
+                        <p class="comment-text font-3">{{ i.comment}}</p>
+                    </div>
+                    <div id="editView-{{i.id}}" class="edit-box none">
+                        <textarea class="my-form" id="content-{{i.id}}" rows="5" data-id="{{i.id}}">{{ i.comment }}</textarea>
+                        <br>
+                        <div>
+                            <button id="save-{{i.id}}" value="save" class="button">Save</button>
+                            <button id="cancel-{{i.id}}" class="button">Cancel</button>
+                        </div>
+                    </div> 
+                    <small class="gray">{{i.time}}</small>
+                    <br>
+                    {% if request.user == i.user %} 
+                        <a class="edit" id="editComment-{{i.id}}" data-id="{{i.id}}" title="Edit Comment" style="cursor: pointer;">
+                            <i class="fa-solid fa-pen-to-square turq"></i>
+                        </a>
+                        <a class="delete" id="deleteComment-{{i.id}}" data-id="{{i.id}}" title="Delete Comment" style="cursor: pointer;">
+                            <i class="fa-solid fa-trash-can turq"></i>
+                        </a>
+                    {% endif %}    
+                </div>
+            </div>
+        {% endfor %}    
+    </div>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'news/news.js' %}"></script>
+    <script src="{% static 'news/pageEffects.js' %}"></script>  
+{% endblock %}

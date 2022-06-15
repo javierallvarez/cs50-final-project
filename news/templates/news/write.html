@@ -1,0 +1,70 @@
+{% extends "news/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <!-- I needed a different header for this page with am arrow to come back home: -->
+    <header class="header">
+    <div class="head_elements">
+        <figure class="resetter">
+            <a class="logo" href="{% url 'index' %}">
+                <i class="fa-solid fa-arrow-left-long"></i>  
+            </a>
+        </figure> 
+        
+        {% if user.is_authenticated %}
+            <div class="header-end">
+                <div title="Logged as @{{ profile.user.username }}" class="little-avatar">
+                    <img src="{{ profile.avatar }}" alt=""> 
+                </div> 
+            </div>    
+        {% else %}    
+            <a href="{% url 'login' %}">
+                <button class="button">login
+                </button>
+            </a>
+        {% endif %}     
+    </div>
+    <!-- Scroll bars:     -->
+    <div id="bar1"></div>      
+    <div id="bar"></div>      
+    </header>
+
+    <div class="choose-avatar">
+        <form action="{% url 'write_news' %}" method="post" id="news-form" >
+            {% csrf_token %}
+            <div class="input-div news-input">
+                <h3>The journalist's corner</h3> 
+                <p>Write your news</p>
+                <label for="news" class="news-writing">
+                    <p>Title:</p>
+                </label> {{ newsForm.title }}
+                <label for="news" class="news-writing">
+                    <p>Description:</p>
+                    <p>{{ newsForm.description }}</p>
+                </label>
+                <label for="news" class="news-writing">
+                    <p>Content:</p>
+                    <p>{{ newsForm.content }}</p>
+                </label> 
+                <label for="news" class="news-writing">
+                    <p>Choose a topic:</p>
+                    <p>{{ newsForm.topic }}</p>
+                </label>
+                <label for="news" class="news-writing">
+                    <p>Add an image:</p>
+                    <p>{{ newsForm.image }}</p>
+                </label>
+                <label for="news" class="news-writing">
+                    <p>Publication date:</p>
+                    <p>{{ newsForm.time }}</p>
+                </label>
+            </div>
+            <input class="button" type="submit" value="Save">
+        </form>  
+    </div>      
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/index.js' %}"></script>
+{% endblock %}
